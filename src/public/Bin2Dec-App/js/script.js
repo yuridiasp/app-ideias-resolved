@@ -23,7 +23,7 @@ function changeConvertion() {
 }
 
 function binaryToDecimal (bin) {
-    const algarisms = String(bin).split("")
+    const algarisms = bin.split("")
     const base = 2
 
     algarisms.reverse()
@@ -52,8 +52,11 @@ function decimalToBinary (dec) {
 
 binary.addEventListener("input", event => {
     const { target } = event
+    const regex = /[2-9A-Za-z\/\*\-\+\.\[\]´`~{}\|;,?/°ºª!@#$%¨&\(\)='"\\çÇ]/g
+    if (target.value.match(regex))
+        alert("For conversion from binary to decimals, only 0 or 1 can be entered")
 
-    target.value = target.value.replaceAll(/[2-9\+\-\.]/g, "")
+    target.value = target.value.replaceAll(regex, "")
 
     if (binary.value.length) {
         decimal.value = binaryToDecimal(target.value)
