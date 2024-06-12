@@ -1,0 +1,18 @@
+#inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.rotate {
+    animation-name: rotate-icon;
+    animation-duration: 500ms;
+}
+
+@keyframes rotate-icon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Border Radius Previewer</title>
+    <%- include('../../partials/style/style') %>
+</head>
+<body>
+    <%- include('../../partials/header/header') %>
+    <main>
+        <h2 id="title">Border Radius Previewer</h2>
+        <div id="container">
+            <input type="range" id="r1">
+            <input type="range" id="r2">
+            <input type="range" id="r3">
+            <input type="range" id="r4">
+            <div id="content"></div>
+        </div>
+        <div>
+            Border-radius:
+            <input type="text" id="result" disabled>
+            <a id="copyBTN" class="waves-effect waves-light btn"><i class="material-icons left material-symbols-outlined">content_copy</i>copy</a>
+        </div>
+    </main>
+    <%- include('../../partials/footer/footer') %>
+    <script src="./js/script.js"></script>
+</body>
+</html>

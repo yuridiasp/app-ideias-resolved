@@ -1,0 +1,48 @@
+#container {
+    display: flex;
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+#content {
+    width: 300px;
+    height: 300px;
+    background-color: black;
+}
+
+input[type=range] {
+    position: absolute;
+    width: 300px;
+    margin: 0;
+    border: none;
+}
+
+#r1, #r4 {
+    transform: rotate(-90deg);
+}
+
+#r1 {
+    left: -50%;
+    top: 50%;
+    bottom: 50%;
+}
+
+#r2 {
+    top: 0;
+}
+
+#r3 {
+    bottom: 0;
+}
+
+#r4 {
+    right: -50%;
+    top: 50%;
+    bottom: 50%;
+}
+
+#result {
+    width: 300px;
+    text-align: center;
+}

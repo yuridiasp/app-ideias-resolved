@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Binary To Decimal</title>
+    <%- include('../../partials/style/style') %>
+</head>
+<body>
+    <%- include('../../partials/header/header') %>
+    <main>
+        <h2 id="title">Binary To Decimal</h2>
+        <div id="inputs">
+            <div class="inputDiv">
+                <p>Decimal: </p>
+                <input id="decimal" type="text" disabled>
+            </div>
+            <div class="inputDiv">
+                <p>Binary: </p>
+                <input id="binary" type="number">
+            </div>
+        </div>
+        <div>
+            <a id="changeBtn" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons"><span class="material-symbols-outlined">
+                autorenew
+                </span></i></a>
+        </div>
+    </main>
+    <%- include('../../partials/footer/footer') %>
+    <script src="./js/script.js"></script>
+</body>
+</html>
