@@ -15,6 +15,6 @@ router.get("/Bin2Dec-App", bin2DecController);
 
 router.get("/Border-Radius-Previewer", borderRadiusPreviewerController);
 
-router.get("/Calculator", calculatorController);
+router.get("/Calculator-App", calculatorController);
 
 export default router;

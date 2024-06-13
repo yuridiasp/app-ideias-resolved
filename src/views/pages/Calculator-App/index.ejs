@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Calculator</title>
+    <%- include('../../partials/style/style') %>
+</head>
+<body>
+    <%- include('../../partials/header/header') %>
+    <main>
+        <h2 id="title">Calculator</h2>
+        <div id="container">
+            <input type="text" class="screen" value="0" disabled>
+            <div class="keyboard">
+                <div class="row">
+                    <button class="key btn">CE</button>
+                    <button class="key btn">C</button>
+                    <button class="key btn">+</button>
+                </div>
+                <div class="row">
+                    <button class="key btn">7</button>
+                    <button class="key btn">8</button>
+                    <button class="key btn">9</button>
+                    <button class="key btn">-</button>
+                </div>
+                <div class="row">
+                    <button class="key btn">4</button>
+                    <button class="key btn">5</button>
+                    <button class="key btn">6</button>
+                    <button class="key btn">*</button>
+                </div>
+                <div class="row">
+                    <button class="key btn">1</button>
+                    <button class="key btn">2</button>
+                    <button class="key btn">3</button>
+                    <button class="key btn">/</button>
+                </div>
+                <div class="row">
+                    <button class="key btn">.</button>
+                    <button class="key btn">0</button>
+                    <button class="key btn">+/-</button>
+                    <button class="key btn">=</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('../../partials/footer/footer') %>
+    <script src="./js/script.js"></script>
+</body>
+</html>
