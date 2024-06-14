@@ -11,13 +11,29 @@
     <%- include('../../partials/style/style') %>
 </head>
 <body>
-    <header>
-        <a href="https://github.com/clovesrocha/app-ideias" target="_blank">Repositório Original</a>
-    </header>
+    <%- include('../../partials/header/header') %>
     <main>
         <h2>Christmas Lights App</h2>
-        <div class="container">
-            <div class="light"></div>
+        <div>
+            <div class="controllers">
+                <button>ON</button>
+            </div>
+            <div class="controllers">
+                <input type="color" data-index="0" value="#ee4035">
+                <input type="color" data-index="1" value="#f37736">
+                <input type="color" data-index="2" value="#fdf498">
+                <input type="color" data-index="3" value="#7bc043">
+                <input type="color" data-index="4" value="#0392cf">
+            </div>
+        </div>
+        <div class="content">
+            <div class="row">
+                <span data-column="0" class="light vermelho on"></span>
+                <span data-column="1" class="light laranja on-reverse"></span>
+                <span data-column="2" class="light amarelo on"></span>
+                <span data-column="3" class="light verde on-reverse"></span>
+                <span data-column="4" class="light azul on"></span>
+            </div>
         </div>
     </main>
     <%- include('../../partials/footer/footer') %>
