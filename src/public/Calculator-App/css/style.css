@@ -1,8 +1,28 @@
 .row {
     display: flex;
     gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .row button {
     flex: 1;
+}
+
+.backspace {
+    border: none;
+    background: none;
+    color: #26a69a;
+}
+
+.backspace:focus {
+    background: none;
+}
+
+.backspace:hover {
+    filter: brightness(0.8);
+}
+
+.backspace:active {
+    filter: brightness(1.2);
 }

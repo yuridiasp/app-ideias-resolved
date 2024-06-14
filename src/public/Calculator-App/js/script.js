@@ -1,53 +1,101 @@
 const keys = document.querySelectorAll(".key")
 const screen = document.querySelector(".screen")
 
-let primaryValue = null, operation = null
+let firstNumber = null, currentOperation = null
+
+function setFirstNumber(number) {
+    firstNumber = number
+}
+
+function setCurrentNumber(number) {
+    screen.value = number
+}
 
 function resetPrimaryValue() {
-    primaryValue = null
+    firstNumber = null
 }
 
-function add (x, y) {
-    return x + y
+function resetCurrentOperation() {
+    currentOperation = null
 }
 
-function sub (x, y) {
-    return x - y
+function deleteNumber () {
+    const result = screen.value.slice(0, -1)
+    if (result.length) {
+      setCurrentNumber(result)
+    } else {
+      setCurrentNumber(0)
+    }
 }
 
-function div (x, y) {
-    if (y == 0)
-        return "ERROR: DIV / 0"
-    return x / y
+function add () {
+    setCurrentOperation('+')
+    if (!firstNumber) {
+      setFirstNumber(screen.value)
+      clear()
+    } else {
+        const sum = Number(firstNumber) + Number(screen.value)
+        console.log(sum);
+        setCurrentNumber(sum)
+    }
 }
 
-function mult (x, y) {
-    return x * y
+function sub () {
+    setCurrentOperation('-')
+    if (!firstNumber) {
+      setFirstNumber(screen.value)
+      clear()
+    } else {
+        const subtraction = Number(firstNumber) - Number(screen.value)
+
+        setCurrentNumber(subtraction)
+    }
 }
 
-function inserKey(key) {
+function div () {
+    setCurrentOperation('/')
+    if (!firstNumber) {
+        setFirstNumber(screen.value)
+        clear()
+    } else {
+        if (screen.value === "0") {
+            setCurrentNumber("ERROR: DIV / 0")
+        } else {
+            const division = Number(firstNumber) / Number(screen.value)
+
+            setCurrentNumber(division)
+        }
+    }
+}
+
+function mult () {
+    setCurrentOperation('*')
+    if (!firstNumber) {
+        setFirstNumber(screen.value)
+        clear()
+    } else {
+        const multiplication = Number(firstNumber) * Number(screen.value)
+
+        setCurrentNumber(multiplication)
+    }
+}
+
+function insertKey(key) {
     if (screen.value !== "0" || (screen.value === "0" && key === ".")) {
         screen.value += key
     } else {
-        screen.value = key
+        setCurrentNumber(key)
     }
 }
 
 function clear() {
-    screen.value = 0
+    setCurrentNumber(0)
 }
 
 function clearAll() {
+    resetCurrentOperation()
     resetPrimaryValue()
     clear()
-}
-
-function resolveExpression() {
-    if (operation) {
-        const x = Number(primaryValue)
-        const y = Number(screen.value)
-        screen.value = operation(x, y)
-    }
 }
 
 function insertDot() {
@@ -56,7 +104,7 @@ function insertDot() {
     const hasDot = regex.test(screen.value)
 
     if (!hasDot) {
-        inserKey(".")
+        insertKey(".")
     }
 }
 
@@ -66,34 +114,55 @@ function inverter() {
     const isNegative = regex.test(screen.value)
 
     if (!isNegative && screen.value !== "0") {
-        screen.value = "-" + screen.value
+        setCurrentNumber("-" + screen.value)
     } else {
-        screen.value = screen.value.replace("-", "")
+        setCurrentNumber(screen.value.replace("-", ""))
     }
+}
+
+function resolveExpression() {
+    const opeations = {
+        '+': () => add(),
+        '-': () => sub(),
+        '*': () => mult(),
+        '/': () => div()
+      }
+  
+      if (currentOperation) {
+        opeations[currentOperation]()
+        setFirstNumber(null)
+      }
+}
+
+function setCurrentOperation(opeation) {
+    currentOperation = opeation
+}
+
+function isNumber(value) {
+    return !isNaN(value) && value.trim() !== '';
 }
 
 keys.forEach(key => {
     key.addEventListener("click", event => {
         const { innerText: keyPressed } = event.target
 
-        const functions = {
-            "+": add,
-            "-": sub,
-            "/": div,
-            "*": mult,
-            "=": resolveExpression,
-            ".": insertDot,
-            "C": clearAll,
-            "CE": clear,
-            "+/-": inverter
-        }
-
-        operation = functions[keyPressed]
-        
-        if (!operation) {
-            inserKey(keyPressed)
+        if (isNumber(keyPressed)) {
+            insertKey(keyPressed)
         } else {
-            operation()
+            const functions = {
+                "=": () => resolveExpression(),
+                ".": () => insertDot(),
+                "C": () => clearAll(),
+                "CE": () => clear(),
+                "+/-": () => inverter(),
+                "+": () => add(),
+                "-": () => sub(),
+                "*": () => mult(),
+                "/": () => div(),
+                "backspace": () => deleteNumber()
+            }
+
+            functions[keyPressed]()
         }
     })
 })
