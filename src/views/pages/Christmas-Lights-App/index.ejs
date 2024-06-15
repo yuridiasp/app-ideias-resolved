@@ -16,25 +16,46 @@
         <h2>Christmas Lights App</h2>
         <div>
             <div class="controllers">
-                <button>ON</button>
+                <div class="switch">
+                    <label>
+                        Off
+                        <input id="power" type="checkbox">
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
             </div>
             <div class="controllers">
-                <input type="color" data-index="0" value="#ee4035">
-                <input type="color" data-index="1" value="#f37736">
-                <input type="color" data-index="2" value="#fdf498">
-                <input type="color" data-index="3" value="#7bc043">
-                <input type="color" data-index="4" value="#0392cf">
+                <label id="container-rowsNumbers">
+                    1
+                    <input type="range" id="rowsNumbers" min="1" max="7" step="1" value="1">
+                    7
+                </label>
+            </div>
+            <div class="controllers">
+                <div>
+                    <button class="colorBTN vermelho"></button>
+                    <input type="color" data-index="0" value="#ee4035">
+                </div>
+                <div>
+                    <button class="colorBTN laranja"></button>
+                    <input type="color" data-index="1" value="#f37736">
+                </div>
+                <div>
+                    <button class="colorBTN amarelo"></button>
+                    <input type="color" data-index="2" value="#fdf498">
+                </div>
+                <div>
+                    <button class="colorBTN verde"></button>
+                    <input type="color" data-index="3" value="#7bc043">
+                </div>
+                <div>
+                    <button class="colorBTN azul"></button>
+                    <input type="color" data-index="4" value="#0392cf">
+                </div>
             </div>
         </div>
-        <div class="content">
-            <div class="row">
-                <span data-column="0" class="light vermelho on"></span>
-                <span data-column="1" class="light laranja on-reverse"></span>
-                <span data-column="2" class="light amarelo on"></span>
-                <span data-column="3" class="light verde on-reverse"></span>
-                <span data-column="4" class="light azul on"></span>
-            </div>
-        </div>
+        <div class="content"></div>
     </main>
     <%- include('../../partials/footer/footer') %>
     <script src="./js/script.js"></script>
