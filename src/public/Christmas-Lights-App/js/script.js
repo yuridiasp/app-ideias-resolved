@@ -2,62 +2,32 @@ const colors = document.querySelectorAll("input[type=color]")
 const colorBTN = document.querySelectorAll(".colorBTN")
 const power = document.querySelector("#power")
 const rowsNumbers = document.querySelector("#rowsNumbers")
-const style = document.head.querySelector('style')
-const sheet = style.sheet
+const velocity = document.querySelector("#velocity")
 
-let buttonIndex = null
+let buttonIndex = null, onOFF = false
 
-function powerLights (event) {
-
-    const { target: powerButton } = event
-
-    if (powerButton.checked) {
+function powerLights () {
+    const lights = document.querySelectorAll(".light")
+    //duration | easing-function | delay | iteration-count | direction | fill-mode | play-state | name
+    lights.forEach(light => {
+        const { column } = light.dataset
+        const duration = velocity.value
+        const delay = duration / 2
         
-    } else {
-
-    }
-}
-
-function updateAnimation (light, index) {
-    const duration = 1
-    const delay = duration / 2
-    const isReverse = index % 2 === 0 ? "on" : "on-reverse"
-    const on = `
-        @keyframes on {
-            0% {
-                filter: brightness(0.5);
-                box-shadow: 0 0 0 0 ${light.style.backgroundColor};
-            }
-            50% {
-                filter: brightness(1);
-                box-shadow: 0 0 50px 50px ${light.style.backgroundColor};
-            }
-            100% {
-                filter: brightness(0.5);
-                box-shadow: 0 0 0 0 ${light.style.backgroundColor};
-            }
-        }`
-    const animation = `
-        .lightAnimate {
-            animation: all ${duration}s ease infinite ${delay} ${isReverse};
-        }
-    `
-
-    sheet.insertRule(animation)
-    sheet.insertRule(on)
+        light.style.filter = `brightness(${power.checked ? "1" : "0.5"})`
+        light.style.boxShadow = `0 0 ${power.checked ? "50px 10px" : "0 0" } ${colors[column].value}`
+        light.style.animation = `${duration}s ease ${light.classList.contains("on-reverse") ? delay + "s" : ""} infinite onOff`
+    })
 }
 
 function updateColors (event) {
     const lights = document.querySelectorAll(".light")
-
-    const { target: input } = event
-    const { index } = input.dataset
-
     lights.forEach(light => {
-        if (light.dataset.column === index) {
-            light.style.backgroundColor = input.value
-            colorBTN[buttonIndex].style.backgroundColor = input.value
-            updateAnimation(light, index)
+        if (light.dataset.column === event.target.dataset.index) {
+            light.style.backgroundColor = event.target.value
+            light.style.filter = `brightness(${power.checked ? "1" : "0.5"})`
+            light.style.boxShadow = `0 0 ${power.checked ? "50px 10px" : "0 0" } ${event.target.value}`
+            colorBTN[buttonIndex].style.backgroundColor = event.target.value
         }
     })
 }
@@ -89,6 +59,7 @@ function updateRowsNumbers (event = null, cont= null) {
         `
 
         content.innerHTML += html
+        powerLights()
     } 
 }
 
@@ -100,6 +71,8 @@ colorBTN.forEach((btn, index) => btn.addEventListener('click', () => {
 }))
 
 power.addEventListener("change", powerLights)
+
+velocity.addEventListener("change", powerLights)
 
 rowsNumbers.addEventListener("input", updateRowsNumbers)
 

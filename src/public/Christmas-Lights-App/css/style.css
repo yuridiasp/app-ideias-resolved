@@ -55,6 +55,10 @@
     margin: 0;
 }
 
+.controllers label {
+    margin: 0 10px;
+}
+
 .controllers div {
     display: flex;
     justify-self: center;
@@ -81,9 +85,16 @@
     background-color: none;
 }
 
-#container-rowsNumbers {
+#containerRange {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+@keyframes onOff {
+    to {
+        filter: brightness(0.5);
+        box-shadow: 0 0 0 0;
+    }
 }
