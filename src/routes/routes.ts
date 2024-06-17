@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { bin2DecController } from "../controller/bin-2-dec-controller";
-import { homeController, homeRedirectController } from "../controller/home-controller";
+import { bin2DecController } from "../controller/bin-2-dec";
+import { homeController, homeRedirectController } from "../controller/home";
 import { borderRadiusPreviewerController } from "../controller/border-radius-previewer";
 import { calculatorController } from "../controller/calculator-app";
 import { christmasLightsAppController } from "../controller/christmas-lights-app";

@@ -1,0 +1,12 @@
+[
+    {"name": "João da Silva", "street": "Rua das Flores, 123", "city": "São Paulo", "state": "SP", "country": "Brazil", "telephone": "(11) 98765-4321", "birthday": "1990-05-15"},
+    {"name": "Maria Santos", "street": "Av. Principal, 456", "city": "Rio de Janeiro", "state": "RJ", "country": "Brazil", "telephone": "(21) 99999-8888", "birthday": "1985-12-30"},
+    {"name": "John Smith", "street": "123 Main St", "city": "New York", "state": "NY", "country": "USA", "telephone": "+1 (212) 555-1234", "birthday": "1980-07-04"},
+    {"name": "Alice Johnson", "street": "456 Elm St", "city": "Los Angeles", "state": "CA", "country": "USA", "telephone": "+1 (310) 555-5678", "birthday": "1988-03-20"},
+    {"name": "Carlos García", "street": "Calle Principal, 789", "city": "Madrid", "state": "Madrid", "country": "Spain", "telephone": "+34 91 234 5678", "birthday": "1976-09-10"},
+    {"name": "Sophie Martin", "street": "Rue de la Paix, 101", "city": "Paris", "state": "Île-de-France", "country": "France", "telephone": "+33 1 40 12 34 56", "birthday": "1993-01-25"},
+    {"name": "Miguel Oliveira", "street": "Avenida Central, 567", "city": "Lisbon", "state": "Lisbon", "country": "Portugal", "telephone": "+351 21 987 6543", "birthday": "1982-11-18"},
+    {"name": "Chihiro Tanaka", "street": "2-3-4 Sakura-dori", "city": "Tokyo", "state": "Tokyo", "country": "Japan", "telephone": "+81 3 9876 5432", "birthday": "1991-06-12"},
+    {"name": "Anastasia Petrov", "street": "Ulitsa Pobedy, 8", "city": "Moscow", "state": "Moscow", "country": "Russia", "telephone": "+7 495 123-45-67", "birthday": "1987-04-05"},
+    {"name": "Elena Papadopoulos", "street": "Οδός Αθηνάς, 15", "city": "Athens", "state": "Attica", "country": "Greece", "telephone": "+30 21 8765 4321", "birthday": "1994-09-28"}
+]
