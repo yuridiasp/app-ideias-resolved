@@ -6,8 +6,8 @@ Repositório criado para resolução dos desafios propostos no [repositório App
 
 - [x] Bin2Dec
 - [x] Border Radius Previewer
-- [ ] Calculator
-- [ ] Christmas Lights
+- [x] Calculator
+- [x] Christmas Lights
 - [ ] Cause Effect App
 - [ ] Color Cycle
 - [ ] Countdown Timer

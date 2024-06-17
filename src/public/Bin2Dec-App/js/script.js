@@ -6,6 +6,8 @@ const inputsDiv = document.querySelector("#inputs")
 
 const inputs = [[binary, "column"], [decimal, "column-reverse"]]
 const titles = ["Binary To Decimal", "Decimal To Binary"]
+const limit = 8
+const deleteCount = 1
 
 function changeConvertion() {
 
@@ -50,27 +52,37 @@ function decimalToBinary (dec) {
     return arrayResultado.join("")
 }
 
-binary.addEventListener("input", event => {
-    const { target } = event
+binary.addEventListener("input", () => {
+
     const regex = /[2-9A-Za-z\/\*\-\+\.\[\]´`~{}\|;,?/°ºª!@#$%¨&\(\)='"\\çÇ]/g
-    if (target.value.match(regex))
+
+    if (binary.value.match(regex))
         alert("For conversion from binary to decimals, only 0 or 1 can be entered")
 
-    target.value = target.value.replaceAll(regex, "")
+    binary.value = binary.value.replaceAll(regex, "")
+
+    if (binary.value.length >= limit) {
+        binary.value = binary.value.slice(0, 8)
+        alert("Limited to 8 bits")
+    }
 
     if (binary.value.length) {
-        decimal.value = binaryToDecimal(target.value)
+        decimal.value = binaryToDecimal(binary.value)
     } else {
         decimal.value = ""
     }
 
 })
 
-decimal.addEventListener("input", event => {
-    const { target } = event
+decimal.addEventListener("input", () => {
+
+    if (decimal.value.length > limit) {
+        decimal.value = decimal.value.slice(0, 8)
+        alert("Limited to 8 charaters")
+    }
 
     if (decimal.value.length) {
-        binary.value = decimalToBinary(target.value)
+        binary.value = decimalToBinary(decimal.value)
     } else {
         binary.value = ""
     }

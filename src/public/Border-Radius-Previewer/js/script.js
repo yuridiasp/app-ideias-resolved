@@ -5,6 +5,7 @@ const rangeRight = document.querySelector("#r4")
 const content = document.querySelector("#content")
 const result = document.querySelector("#result")
 const copyBTN = document.querySelector("#copyBTN")
+const inputFields = document.querySelectorAll(".input-field input")
 
 const state = {
     left: {
@@ -47,6 +48,11 @@ function getTuple(value) {
 function setState() {
     const expression = `${state.top.x}% ${state.top.y}% ${state.bottom.y}% ${state.bottom.x}% / ${state.left.y}% ${state.right.y}% ${state.right.x}% ${state.left.x}%`
 
+    inputFields.forEach(inputField => {
+        const { side, axis } = inputField.dataset
+        inputField.value = state[side][axis]
+    })
+
     content.style.borderRadius = expression
     result.value = expression
 }
@@ -87,6 +93,31 @@ rangeRight.addEventListener("input", () => {
     setState()
 })
 
-copyBTN.addEventListener("click", copyText);
+inputFields.forEach(inputField => {
+    inputField.addEventListener("input", ({target: input}) => {
+        const { side, axis } = input.dataset
 
-(() => setState())();
+        if (input.value > 100)
+            input.value = 100
+
+        if (input.value < 0)
+            input.value = 0
+        
+        state[side][axis] = input.value
+    
+        setState()
+    })
+})
+
+copyBTN.addEventListener("click", copyText)
+
+document.addEventListener('DOMContentLoaded', function() {
+    const elems = document.querySelectorAll('.fixed-action-btn')
+
+    const instances = M.FloatingActionButton.init(elems, {
+        direction: 'top',
+        hoverEnabled: false
+    })
+});
+
+(() => setState())()

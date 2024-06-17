@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./css/style.css">
     <title>Border Radius Previewer</title>
@@ -25,8 +26,56 @@
             <input type="text" id="result" disabled>
             <a id="copyBTN" class="waves-effect waves-light btn"><i class="material-icons left material-symbols-outlined">content_copy</i>copy</a>
         </div>
+        <div class="fixed-action-btn click-to-toggle">
+            <a class="btn-floating btn-large waves-light">
+              <i class="large material-icons">settings</i>
+            </a>
+            <ul>
+                <li class="column">
+                    <div>
+                        <p>X-Radius</p>
+                        <div class="input-field">
+                            <input data-side="top" data-axis="x" type="number" min="0" max="100" id="xtl">
+                            <label for="xtl">top-left</label>
+                        </div>
+                        <div class="input-field">
+                            <input data-side="top" data-axis="y" type="number" min="0" max="100" id="xtr">
+                            <label for="xtr">top-right</label>
+                        </div>
+                        <div class="input-field">
+                            <input data-side="bottom" data-axis="y" type="number" min="0" max="100" id="xbr">
+                            <label for="xbr">bottom-right</label>
+                        </div>
+                        <div class="input-field">
+                            <input data-side="bottom" data-axis="x" type="number" min="0" max="100" id="xbl">
+                            <label for="xbl">bottom-left</label>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Y-Radius</p>
+                        <div class="input-field">
+                            <input data-side="left" data-axis="y" type="number" min="0" max="100" id="ytl">
+                            <label for="ytl">top-left</label>
+                        </div>
+                        <div class="input-field">
+                            <input data-side="right" data-axis="y" type="number" min="0" max="100" id="ytr">
+                            <label for="ytr">top-right</label>
+                        </div>
+                        <div class="input-field">
+                            <input data-side="right" data-axis="x" type="number" min="0" max="100" id="ybr">
+                            <label for="ybr">bottom-right</label>
+                        </div>
+                        <div class="input-field">
+                            <input data-side="left" data-axis="x" type="number" min="0" max="100" id="ybl">
+                            <label for="ybl">bottom-left</label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </main>
     <%- include('../../partials/footer/footer') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>

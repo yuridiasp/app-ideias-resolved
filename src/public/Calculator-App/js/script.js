@@ -1,15 +1,87 @@
 const keys = document.querySelectorAll(".key")
 const screen = document.querySelector(".screen")
 
+
 let firstNumber = null, currentOperation = null
+
+function getFractionDigitsLength() {
+    const screenDecimals = screen.value.split(".")[1]
+    const firstNumberDecimals = firstNumber.split(".")[1]
+    let screenDecimalsLength = 0, firstNumberDecimalsLength = 0
+
+    if (screenDecimals) {
+        screenDecimalsLength = screenDecimals.length
+    }
+
+    if (firstNumberDecimals) {
+        firstNumberDecimalsLength = firstNumberDecimals.length
+    }
+
+    return screenDecimalsLength >= firstNumberDecimalsLength ? screenDecimalsLength : firstNumberDecimalsLength
+}
+
+function showError (error = "ERR") {
+    screen.value = error
+}
+
+function validateDecLength (number) {
+    const limit = 3
+    const { length } = number
+
+    if (length > limit) {
+        return false
+    }
+
+    return true
+
+}
+
+function validateIntLength (number) {
+    const limit = 8
+    const regex = /[0-9]/g
+    const [ integerNumber, decimalPlaces ] = number.split(".")
+    const { length } = integerNumber.match(regex).join("")
+
+    if (length > limit) {
+        return [ false, decimalPlaces ]
+    }
+
+    return [ true, decimalPlaces ]
+}
+
+function showResult(number) {
+    const [ isValidInt ] = validateIntLength(number)
+    
+    if (isValidInt) {
+        const fractionDigits = getFractionDigitsLength()
+
+        screen.value = Number(number).toLocaleString('en-US', { minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits })
+    } else {
+        showError()
+    }
+}
+
+function setCurrentNumber(number) {
+    const [ isValidInt, decimalPlaces ] = validateIntLength(number)
+    
+    if (isValidInt) {
+        if (decimalPlaces) {
+            const isValidDec = validateDecLength(decimalPlaces)
+            
+            if (!isValidDec) {
+                return
+            }
+        }
+
+        screen.value = number
+    }
+
+}
 
 function setFirstNumber(number) {
     firstNumber = number
 }
 
-function setCurrentNumber(number) {
-    screen.value = number
-}
 
 function resetPrimaryValue() {
     firstNumber = null
@@ -35,8 +107,7 @@ function add () {
       clear()
     } else {
         const sum = Number(firstNumber) + Number(screen.value)
-        console.log(sum);
-        setCurrentNumber(sum)
+        showResult(sum.toString())
     }
 }
 
@@ -47,8 +118,7 @@ function sub () {
       clear()
     } else {
         const subtraction = Number(firstNumber) - Number(screen.value)
-
-        setCurrentNumber(subtraction)
+        showResult(subtraction.toString())
     }
 }
 
@@ -59,11 +129,10 @@ function div () {
         clear()
     } else {
         if (screen.value === "0") {
-            setCurrentNumber("ERROR: DIV / 0")
+            showError("ERR: DIV / 0")
         } else {
             const division = Number(firstNumber) / Number(screen.value)
-
-            setCurrentNumber(division)
+            showResult(division.toString())
         }
     }
 }
@@ -75,21 +144,21 @@ function mult () {
         clear()
     } else {
         const multiplication = Number(firstNumber) * Number(screen.value)
-
-        setCurrentNumber(multiplication)
+        showResult(multiplication.toString())
     }
 }
 
 function insertKey(key) {
     if (screen.value !== "0" || (screen.value === "0" && key === ".")) {
-        screen.value += key
+        const newCurrentNumber = screen.value + key
+        setCurrentNumber(newCurrentNumber)
     } else {
         setCurrentNumber(key)
     }
 }
 
 function clear() {
-    setCurrentNumber(0)
+    setCurrentNumber("0")
 }
 
 function clearAll() {

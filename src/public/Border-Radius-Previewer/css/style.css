@@ -46,3 +46,19 @@ input[type=range] {
     width: 300px;
     text-align: center;
 }
+
+.fixed-action-btn ul {
+    height: 300px;
+    width: 400px;
+    bottom: 100px;
+    left: -150%;
+}
+
+.input-field label {
+    font-size: 0.8rem;
+}
+
+.column {
+    display: flex;
+    gap: 10px;
+}
