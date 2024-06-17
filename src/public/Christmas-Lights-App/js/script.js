@@ -3,6 +3,7 @@ const colorBTN = document.querySelectorAll(".colorBTN")
 const power = document.querySelector("#power")
 const rowsNumbers = document.querySelector("#rowsNumbers")
 const velocity = document.querySelector("#velocity")
+const intensity = document.querySelector("#intensity")
 
 let buttonIndex = null, onOFF = false
 
@@ -13,8 +14,10 @@ function powerLights () {
         const { column } = light.dataset
         const duration = velocity.value
         const delay = duration / 2
+        const intensityInitialValue = 0.1
+        const intensityLight = (intensity.value / 10) + intensityInitialValue
         
-        light.style.filter = `brightness(${power.checked ? "1" : "0.5"})`
+        light.style.filter = `brightness(${power.checked ? `${intensityLight}` : "0.1"})`
         light.style.boxShadow = `0 0 ${power.checked ? "50px 10px" : "0 0" } ${colors[column].value}`
         light.style.animation = `${duration}s ease ${light.classList.contains("on-reverse") ? delay + "s" : ""} infinite onOff`
     })
@@ -24,8 +27,9 @@ function updateColors (event) {
     const lights = document.querySelectorAll(".light")
     lights.forEach(light => {
         if (light.dataset.column === event.target.dataset.index) {
+            const intensityLight = intensity.value / 10
             light.style.backgroundColor = event.target.value
-            light.style.filter = `brightness(${power.checked ? "1" : "0.5"})`
+            light.style.filter = `brightness(${power.checked ? `${intensityLight}` : "0.1"})`
             light.style.boxShadow = `0 0 ${power.checked ? "50px 10px" : "0 0" } ${event.target.value}`
             colorBTN[buttonIndex].style.backgroundColor = event.target.value
         }
@@ -49,7 +53,7 @@ function updateRowsNumbers (event = null, cont= null) {
         const spans = spansAttributes.map(({ color, column}) => {
             const classe = classesAnimation[0]
             classesAnimation.reverse()
-            return `<span data-column="${column}" class="light ${classe}" style="background-color: ${color}" ></span>`
+            return `<textarea data-column="${column}" class="light ${classe}" style="background-color: ${color}" disabled ></textarea>`
         })
 
         const html = `
@@ -73,6 +77,8 @@ colorBTN.forEach((btn, index) => btn.addEventListener('click', () => {
 power.addEventListener("change", powerLights)
 
 velocity.addEventListener("change", powerLights)
+
+intensity.addEventListener("change", powerLights)
 
 rowsNumbers.addEventListener("input", updateRowsNumbers)
 
